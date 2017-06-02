@@ -1,0 +1,13 @@
+// 
+// In this file you should add all the mixin for the app
+//
+
+
+//css3 mixin
+
+
+@mixin btn($btn-border, $btn-color, $btn-text) {
+	border: $btn-border;
+	background-color: $btn-color;
+	color: $btn-color;
+}

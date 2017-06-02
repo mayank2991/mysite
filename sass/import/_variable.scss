@@ -1,0 +1,32 @@
+// 
+// In this file you should add all the variable so we can change value from the one place
+//
+
+// var for the grid
+
+$grid-size 				:	1140px;
+$grid-columns 			:	12;
+$grid-gutter 			:	30;
+
+$break-desktop			:	$grid-size;
+$break-medium			:	1024px;
+$break-small			:	767px;
+$break-extrasmall		:	559px;
+
+$all-desktop			:	"only screen and (min-width: "$break-medium")";
+$small-desktop			:	"only screen and (max-width: "$break-desktop") and (min-width: "$break-medium")";
+
+$big-device				:	"only screen and (max-width: "$break-medium") and (min-width: "$break-small")";
+$small-device			:	"only screen and (max-width: "$break-small") and (min-width: "$break-extrasmall")";
+$mobile-device			:	"only screen and (max-width: "$break-extrasmall")";
+
+$for-desktop			:	lg;
+$for-big-device			:	md;
+$for-small-device		:	sm;
+$for-extrasmall-device	:	xx;
+
+$hide					:	hide;
+$show					:	show;
+
+
+// var for fonts

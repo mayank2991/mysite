@@ -1,0 +1,84 @@
+// 
+// In this file you should add grid code
+//
+
+@mixin grid-create($screen-class) {
+
+	@for $i from 1 through $grid-columns {
+	    $width: percentage($i / $grid-columns);
+	    .col-#{$screen-class}-#{$i} {
+	        width: $width;
+	    }
+	}
+
+	@for $i from 1 through $grid-columns {
+	    $width: percentage($i / $grid-columns);
+	    .col-#{$screen-class}-push-#{$i} {
+	        left: $width;
+	    }
+	}
+
+	@for $i from 0 through $grid-columns {
+	    $width: percentage($i / $grid-columns);
+	    .col-#{$screen-class}-pull-#{$i} {
+	        right: $width;
+	    }
+	}
+
+	.col-#{$screen-class}-#{$hide} {
+	    display:none !important;
+	}
+	.col-#{$screen-class}-#{$show} {
+	    display:block !important;
+	}
+	
+}
+
+
+@mixin grid-set($screen-class) {
+
+	@if $screen-class == $for-big-device {
+		@media #{$big-device} {
+			@include grid-create(#{$screen-class});
+		}
+	} @else if $screen-class == $for-small-device {
+		@media #{$small-device} {
+			@include grid-create(#{$screen-class});
+		}
+	} @else if $screen-class == $for-extrasmall-device {
+		@media #{$mobile-device} {
+			@include grid-create(#{$screen-class});
+		}
+	} @else {
+		@include grid-create(#{$screen-class});
+	}
+
+}
+
+@mixin grid-col($i: 1, $col: ".col-#{$for-desktop}-#{$i}, .col-#{$for-big-device}-#{$i}, .col-#{$for-small-device}-#{$i}, .col-#{$for-extrasmall-device}-#{$i}") {
+	@for $i from 2 through $grid-columns {
+	    $col: "#{$col}, .col-#{$for-desktop}-#{$i}, .col-#{$for-big-device}-#{$i}, .col-#{$for-small-device}-#{$i}, .col-#{$for-extrasmall-device}-#{$i}";
+	  }
+	  #{$col} {
+	    min-height: 1px;
+	    padding-left:  ceil(($grid-gutter/2));
+	    padding-right: floor(($grid-gutter/2));
+	  }
+}
+
+.row{
+	margin: 0 ($grid-gutter/2) * (-1px);
+}
+
+.row:after{
+	content: ""; 
+	display: block; 
+	clear: both;
+}
+
+@include grid-col();
+
+@include grid-set($for-desktop);
+@include grid-set($for-big-device);
+@include grid-set($for-small-device);
+@include grid-set($for-extrasmall-device);
